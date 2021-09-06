@@ -1,9 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  @apply text-14 leading-24;
 }
 
 a {
@@ -15,6 +20,25 @@ a {
   box-sizing: border-box;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer base {
+  h1 {
+    @apply text-48 leading-56;
+  }
+  h2 {
+    @apply text-40 leading-48;
+  }
+  h3 {
+    @apply text-32 leading-40;
+  }
+  h4 {
+    @apply text-24 leading-32;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    .wrapper {
+      @apply w-full desktop:max-w-screen-desktop px-16 tablet:px-32 laptop:px-80 mx-auto;
+    }
+  }
+}
