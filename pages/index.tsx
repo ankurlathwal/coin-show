@@ -1,3 +1,4 @@
+import TopCoins from '@containers/CoinTables/TopCoins';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -14,7 +15,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1 className="text-primary">Welcome to Coin Show</h1>
+        <div className="wrapper">
+          <h1 className="text-primary">Welcome to Coin Show</h1>
+          <TopCoins />
+        </div>
       </main>
     </div>
   );
