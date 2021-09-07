@@ -19,7 +19,8 @@
       "@containers/*": ["containers/*"],
       "@images/*": ["public/images/*"],
       "@icons/*": ["public/icons/*"]
-    }
+    },
+    "noImplicitAny": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
