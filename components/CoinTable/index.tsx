@@ -1,13 +1,19 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import Image from 'next/image';
 import cn from 'classnames';
 import Coin from 'lib/types/coin';
+import { UserPreferenceContext } from 'lib/providers/UserPreferences';
+import { Currencies } from 'lib/helpers/currencies';
 
 interface props {
   coins: Coin[];
 }
 
 const CoinTable: FC<props> = ({ coins }) => {
+  const { currency } = useContext(UserPreferenceContext);
+  const getSymbol = (): string => {
+    return Currencies.find((c) => c.value === currency)?.symbol || '$';
+  };
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-hidden sm:-mx-6 lg:-mx-8">
@@ -69,7 +75,7 @@ const CoinTable: FC<props> = ({ coins }) => {
                       </div>
                     </td>
                     <td className="px-6 py-10 text-10 leading-12 tablet:text-12 tablet:leading-16 whitespace-nowrap">
-                      {`$${coin.current_price}`}
+                      {`${getSymbol()}${coin.current_price}`}
                     </td>
                     <td
                       className={cn('px-6 py-10 whitespace-nowrap text-sm', {
