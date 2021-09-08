@@ -1,3 +1,4 @@
+import { Currencies } from 'lib/helpers/currencies';
 import { getCurrency, setCurrency } from 'lib/helpers/localStorage';
 import { createContext, FC, useState } from 'react';
 
@@ -8,7 +9,9 @@ interface ContextProps {
 const UserPreferenceContext = createContext<Partial<ContextProps>>({});
 
 const UserPreferencesProvider: FC = ({ children }) => {
-  const [currency, setCurrencyValue] = useState<string | null>(getCurrency());
+  const [currency, setCurrencyValue] = useState<string | null>(
+    getCurrency() || Currencies[0].value,
+  );
 
   const setCurrencyPreference = (currency: string | null): void => {
     if (currency) {

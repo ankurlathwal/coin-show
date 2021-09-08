@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext } from 'react';
 import CoinTable from '@components/CoinTable';
 import useSWR from 'swr';
 import { fetcher } from 'lib/helpers/fetcher';
@@ -9,7 +9,7 @@ import { UserPreferenceContext } from 'lib/providers/UserPreferences';
 const TopCoins: FC = () => {
   const { currency } = useContext(UserPreferenceContext);
   const { data: coins, error } = useSWR(
-    ['/api/top-coins', currency],
+    currency ? ['/api/top-coins', currency] : null,
     (url) => fetcher(url + `?currency=${currency}`),
     {
       refreshInterval: 10000,
