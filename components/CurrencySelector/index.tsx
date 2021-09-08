@@ -32,50 +32,50 @@ const CurrencySelector: FC = () => {
   };
 
   return (
-    <div className="w-100 text-14 leading-16">
+    <>
       <div className="mb-8 font-medium">Select Currency</div>
-      <div
-        className="flex gap-8 p-8 cursor-pointer border rounded-md border-gray-400"
-        onClick={toggleDropdown}
-      >
-        <div>{selectedCurrency.flag}</div>
-        <div>{selectedCurrency.value}</div>
-        {dropdown && (
-          <Image
-            className="ml-16"
-            src="/chevron-up.png"
-            alt="Currency"
-            width="16"
-            height="16"
-          />
-        )}
-        {!dropdown && (
-          <Image
-            className="ml-16"
-            src="/chevron-down.png"
-            alt="Currency"
-            width="16"
-            height="16"
-          />
-        )}
+      <div className="w-100 text-14 leading-16 p-8 border rounded-md">
+        <div
+          className="flex gap-8 py-8 cursor-pointer border-gray-400"
+          onClick={toggleDropdown}
+        >
+          <div>{selectedCurrency.flag}</div>
+          <div>{selectedCurrency.value}</div>
+          {dropdown && (
+            <Image
+              src="/chevron-up.png"
+              alt="Currency"
+              width="16"
+              height="16"
+            />
+          )}
+          {!dropdown && (
+            <Image
+              src="/chevron-down.png"
+              alt="Currency"
+              width="16"
+              height="16"
+            />
+          )}
+        </div>
+        {dropdown &&
+          Currencies.map((c, index) => (
+            <div key={c.value}>
+              {c.value !== selectedCurrency.value && (
+                <div
+                  className="flex gap-8 py-8 cursor-pointer"
+                  onClick={() => {
+                    updateCurrency(index);
+                  }}
+                >
+                  <div>{c.flag}</div>
+                  <div>{c.value}</div>
+                </div>
+              )}
+            </div>
+          ))}
       </div>
-      {dropdown &&
-        Currencies.map((c, index) => (
-          <div key={c.value}>
-            {c.value !== selectedCurrency.value && (
-              <div
-                className="flex gap-8 py-8 cursor-pointer"
-                onClick={() => {
-                  updateCurrency(index);
-                }}
-              >
-                <div>{c.flag}</div>
-                <div>{c.value}</div>
-              </div>
-            )}
-          </div>
-        ))}
-    </div>
+    </>
   );
 };
 
