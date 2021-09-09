@@ -4,12 +4,14 @@ import cn from 'classnames';
 import Coin from 'lib/types/coin';
 import { UserPreferenceContext } from 'lib/providers/UserPreferences';
 import { Currencies } from 'lib/helpers/currencies';
+import { useRouter } from 'next/dist/client/router';
 
 interface props {
   coins: Coin[];
 }
 
 const CoinTable: FC<props> = ({ coins }) => {
+  const router = useRouter();
   const { currency } = useContext(UserPreferenceContext);
   const getSymbol = (): string => {
     return Currencies.find((c) => c.value === currency)?.symbol || '$';
@@ -50,7 +52,13 @@ const CoinTable: FC<props> = ({ coins }) => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {coins.map((coin) => (
-                  <tr key={coin.id}>
+                  <tr
+                    className="cursor-pointer"
+                    key={coin.id}
+                    onClick={() => {
+                      router.push('/coin/' + coin.id);
+                    }}
+                  >
                     <td className="px-6 py-10 whitespace-nowrap ">
                       <div className="flex gap-6 tablet:gap-12">
                         <div>
