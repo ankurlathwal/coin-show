@@ -1,18 +1,24 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import useSWR from 'swr';
 import Loader from '@components/UI/Loader';
 import Error from '@components/UI/Error';
 import { fetcher } from 'lib/helpers/fetcher';
 import CoinInfo from '@components/CoinInfo';
+import { UserPreferenceContext } from 'lib/providers/UserPreferences';
 
 interface props {
   id: string;
 }
 
 const CoinDetails: FC<props> = ({ id }) => {
-  const { data: coin, error } = useSWR('/api/coin?id=' + id, fetcher, {
-    refreshInterval: 10000,
-  });
+  const { currency } = useContext(UserPreferenceContext);
+  const { data: coin, error } = useSWR(
+    '/api/coin?id=' + id + '&currency=' + currency,
+    fetcher,
+    {
+      refreshInterval: 10000,
+    },
+  );
 
   if (error) return <Error />;
   if (!coin) return <Loader />;

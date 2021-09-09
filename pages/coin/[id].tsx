@@ -4,7 +4,11 @@ import Coin from 'lib/types/coin';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 const CoinDetailsPage = ({ id }: { id: string }) => {
-  return <CoinDetails id={id} />;
+  return (
+    <div className="wrapper">
+      <CoinDetails id={id} />
+    </div>
+  );
 };
 
 export default CoinDetailsPage;
