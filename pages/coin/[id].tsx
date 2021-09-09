@@ -2,11 +2,24 @@ import CoinDetails from '@containers/CoinDetails';
 import { getAllCoinsList } from 'lib/coin-gecko';
 import Coin from 'lib/types/coin';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 
 const CoinDetailsPage = ({ id }: { id: string }) => {
   return (
-    <div className="wrapper">
-      <CoinDetails id={id} />
+    <div>
+      <Head>
+        <title>{id} | Coin Details | Coin Show</title>
+        <meta
+          name="description"
+          content="Track your favourite cryptocurrencies"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main>
+        <div className="wrapper">
+          <CoinDetails id={id} />
+        </div>
+      </main>
     </div>
   );
 };
