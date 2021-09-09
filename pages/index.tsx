@@ -17,7 +17,6 @@ const Home: NextPage = () => {
 
       <main>
         <div className="wrapper">
-          <h1 className="text-primary">Welcome to Coin Show</h1>
           <CurrencySelector />
           <TopCoins />
         </div>
