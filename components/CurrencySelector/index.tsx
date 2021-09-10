@@ -32,9 +32,9 @@ const CurrencySelector: FC = () => {
   };
 
   return (
-    <>
-      <div className="mb-8 font-medium">Select Currency</div>
-      <div className="w-100 text-14 leading-16 p-8 border rounded-md">
+    <div className="relative">
+      <div className="mb-8 font-medium">Currency</div>
+      <div className="w-100 text-14 leading-16 p-8 border rounded-md absolute bg-white">
         <div
           className="flex gap-8 py-8 cursor-pointer border-gray-400"
           onClick={toggleDropdown}
@@ -75,7 +75,7 @@ const CurrencySelector: FC = () => {
             </div>
           ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Footer: FC = () => {
   return (
-    <footer className="pt-32">
+    <footer className="wrapper pt-32">
       <div className="text-center font-semibold border-t p-8">
         <Link href="https://www.coingecko.com/en/api">
           <a

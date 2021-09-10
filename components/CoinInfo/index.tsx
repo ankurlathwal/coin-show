@@ -19,7 +19,7 @@ const CoinInfo: FC<props> = ({ coin }) => {
         <h2 className="text-black">{coin.name}</h2>
         <h3 className="text-gray-400 mt-4">({coin.symbol})</h3>
       </div>
-      <div className="flex justify-end">
+      <div className="h-100 py-16 flex">
         <CurrencySelector />
       </div>
       <div className="mt-16 flex flex-col laptop:flex-row-reverse gap-16">
