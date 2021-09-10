@@ -1,3 +1,4 @@
+import BreadCrumbs from '@components/UI/Breadcrumbs';
 import CoinDetails from '@containers/CoinDetails';
 import { getAllCoinsList } from 'lib/coin-gecko';
 import Coin from 'lib/types/coin';
@@ -13,10 +14,11 @@ const CoinDetailsPage = ({ id }: { id: string }) => {
           name="description"
           content="Track your favourite cryptocurrencies"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.svg" />
       </Head>
       <main>
         <div className="wrapper">
+          <BreadCrumbs crumbs={['Home', 'Coin', id]} />
           <CoinDetails id={id} />
         </div>
       </main>

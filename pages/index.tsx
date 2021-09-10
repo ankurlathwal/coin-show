@@ -1,6 +1,7 @@
 import CurrencySelector from '@components/CurrencySelector';
 import Search from '@components/UI/Search';
 import TopCoins from '@containers/CoinTables/TopCoins';
+import WatchList from '@containers/CoinTables/Watchlist';
 import { getAllCoinsList } from 'lib/coin-gecko';
 import Coin from 'lib/types/coin';
 import type { GetStaticProps } from 'next';
@@ -20,7 +21,7 @@ const Home: FC<props> = ({ coinList }) => {
           name="description"
           content="Track your favourite cryptocurrencies"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.svg" />
       </Head>
 
       <main>
@@ -33,7 +34,10 @@ const Home: FC<props> = ({ coinList }) => {
               <CurrencySelector />
             </div>
           </div>
-          <TopCoins />
+          <div className="flex flex-col laptop:flex-row-reverse gap-16 laptop:gap-32">
+            <WatchList />
+            <TopCoins />
+          </div>
         </div>
       </main>
     </div>

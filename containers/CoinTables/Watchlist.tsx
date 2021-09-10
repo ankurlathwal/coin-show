@@ -7,36 +7,43 @@ import Error from '@components/UI/Error';
 import { UserPreferenceContext } from 'lib/providers/UserPreferences';
 import Image from 'next/image';
 
-const TopCoins: FC = () => {
-  const { currency } = useContext(UserPreferenceContext);
-  const { data: coins, error } = useSWR(
-    currency ? ['/api/top-coins', currency] : null,
-    (url) => fetcher(url + `?currency=${currency}`),
+const WatchList: FC = () => {
+  const { currency, watchlist } = useContext(UserPreferenceContext);
+  const ids: string | undefined = watchlist?.map((c) => c.id)?.join('%2C');
+  const { data: watchlistCoins, error } = useSWR(
+    currency ? ['/api/watchlist-coins', currency] : null,
+    (url) => fetcher(url + `?currency=${currency}&ids=` + ids),
     {
       refreshInterval: 10000,
     },
   );
 
   if (error) return <Error />;
-  if (!coins) return <Loader />;
+  if (!watchlistCoins) return <Loader />;
 
   return (
     <div className="w-full py-10">
       <h3 className="font-medium text-primary mb-10">
         <div className="flex gap-8">
           <span>
-            <Image src="/coin.svg" alt="Coins" width="40" height="40" />
+            <Image src="/star.svg" alt="Coins" width="40" height="40" />
           </span>
-          <span>Top Coins</span>
+          <span>My Watchlist</span>
         </div>
       </h3>
       <small className="text-10 leading-16 text-gray-400">
         (Click on a coin to view more details. Data auto-refreshes every 10
         seconds)
       </small>
-      <CoinTable coins={coins} />
+      {watchlistCoins.length > 0 && <CoinTable coins={watchlistCoins} />}
+      {watchlistCoins.length === 0 && (
+        <div className="py-16 text-gray-400">
+          Start adding to your watchlist by clicking Add to watchlist button on
+          coin details page
+        </div>
+      )}
     </div>
   );
 };
 
-export default TopCoins;
+export default WatchList;
