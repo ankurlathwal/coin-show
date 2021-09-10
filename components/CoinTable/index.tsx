@@ -28,7 +28,7 @@ const CoinTable: FC<props> = ({ coins }) => {
                     scope="col"
                     className="px-4 py-3 tablet:px-6 tracking-wider"
                   >
-                    Currency
+                    Coin
                   </th>
                   <th
                     scope="col"
